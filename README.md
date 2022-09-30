@@ -1,2 +1,2 @@
 # basic_image_detection
-detecting rings
+detecting rings in manufacturing images
