@@ -1,6 +1,6 @@
 numpy
 Pillow
-python3-opencv
+opencv-python-headless
 streamlit
 streamlit_image_comparison
 click==8.0.4
