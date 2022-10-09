@@ -1,4 +1,5 @@
 import cv2 as cv
+import os
 import numpy as np
 from PIL import Image, ImageDraw
 
@@ -25,7 +26,7 @@ def crop_image_to_circle(image, circles, inner_radius_fraction=0.7):
 
     cv.circle(image, center, 1, (0, 100, 100), 3)
     cv.circle(image, center, np.int32(np.round(radius*inner_radius_fraction)), (255, 0, 255), 3)
-    cv.imwrite('src/detected_circles_ring.png', image)
+    cv.imwrite(os.path.join(os.environ['REPO_ROOT'], 'src/detected_circles_ring.png'), image)
 
     xright = center[0] + radius
     xleft = center[0] - radius
