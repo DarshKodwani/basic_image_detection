@@ -25,6 +25,7 @@ def crop_image_to_circle(image, circles, inner_radius_fraction=0.7):
 
     cv.circle(image, center, 1, (0, 100, 100), 3)
     cv.circle(image, center, np.int32(np.round(radius*inner_radius_fraction)), (255, 0, 255), 3)
+    cv.imwrite('src/detected_circles_ring.png', image)
 
     xright = center[0] + radius
     xleft = center[0] - radius
@@ -61,16 +62,20 @@ def detect_ring(hist_dict, detection_threshold_for_median=7000):
         print(' ---------------------------------')
         print('|              No Ring!           |')
         print(' ---------------------------------')
+        return ['No ring found']
     else:
         print(' ---------------------------------')
-        print('|            Ring found!         |')
+        print('|            Ring found!          |')
         print(' ---------------------------------')
+        return ["Ring found"]
+
+def run_ring_detection(image):
+    circles = find_circles(image)
+    cropped_image = crop_image_to_circle(image, circles)
+    hist_dict = get_histograms(cropped_image)
+    return detect_ring(hist_dict)
 
 if __name__ == "__main__":
     filename = 'src/ring.png'
     image = cv.imread(cv.samples.findFile(filename), cv.IMREAD_COLOR)
-    circles = find_circles(image)
-    cropped_image = crop_image_to_circle(image, circles)
-    cropped_image.show()
-    hist_dict = get_histograms(cropped_image)
-    detect_ring(hist_dict)
+    run_ring_detection(image)
