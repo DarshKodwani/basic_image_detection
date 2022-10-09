@@ -3,3 +3,4 @@ Pillow
 opencv-python
 streamlit
 streamlit_image_comparison
+click==8.0.4
