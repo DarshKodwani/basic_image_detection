@@ -9,9 +9,7 @@ import time
 
 st.set_page_config("Caterpillar ring detector", "⚙️")
 
-st.image(
-    os.path.join(os.environ['REPO_ROOT'], "src/cat_acc1.png")
-)
+st.image("src/cat_acc1.png")
 
 st.header("Ring detection")
 
